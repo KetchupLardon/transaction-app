@@ -5,6 +5,19 @@ body{
     box-sizing: border-box;
 }
 
+.red{
+    color: #F57D90;
+}
+.green{
+    color: #6FCF97;
+}
+#left_arrow{
+    width: 50px;
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    background-color: white;
+    color: black;
+}
+
 h2{
     text-align: center;
 }
@@ -120,6 +133,17 @@ button{
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+}
+/*Home*/
+#graph{
+    border: 1px solid black;
+}
+
+canvas{
+    padding: 0;
+    margin: auto;
+    display: block;
+    width: 200px;
 }
 
 .flex_row{

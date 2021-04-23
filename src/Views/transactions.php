@@ -1,5 +1,4 @@
 <?php 
-use App\Model\Transaction;
 use \App\Model\Category;
 use \App\Model\PaymentMethod;
 
@@ -8,9 +7,6 @@ $categoryClass = new Category;
 $categoriesArray = $categoryClass->findAll();
 $paymentClass = new PaymentMethod;
 $paymentArray = $paymentClass->findAll();
-
-$instanceTransaction = new Transaction;
-$transactions = $instanceTransaction->findAll();
 
 ob_start();
 ?>
@@ -54,12 +50,7 @@ ob_start();
         </select>
     </div>
 </div>
-<div class="flex_row_buttons">
-    <div id="js_category_filter"></div>
-    <div id="js_type_filter"></div>
-    <div id="js_date_filter"></div>
-    <div id="js_payment_method_filter"></div>
-</div>
+<div id="js_filters" class="flex_row_buttons"></div>
 <div id="transaction_list_container"><div id="transaction_list"></div></div>
 
 <?php

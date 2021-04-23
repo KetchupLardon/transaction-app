@@ -28,7 +28,7 @@ jQuery(document).ready(($) => {
 
     const createActiveFilterButton = (filter, content) => {
         if(!$(`#active_${filter}`).length){
-            $(`#js_${filter}_filter`).append(`<div id="active_${filter}" class="flex_row active_button"><div>${content}</div><div>x</div></div>`);
+            $(`#js_filters`).append(`<div id="active_${filter}" class="flex_row active_button"><div>${content}</div><div>x</div></div>`);
         } else {
             $(`#active_${filter}`).text(content);
         }
@@ -58,16 +58,14 @@ jQuery(document).ready(($) => {
 
     //delete active filter on click
     flitersList.map(filter => {
-        $(`#js_${filter}_filter`).click(() => {
-            if($(`#active_${filter}`).length){
-                $(`#active_${filter}`).remove();
-                if(filter === "type"){
-                    $('input[name=type]:checked').prop('checked', false);
-                } else {
-                    $(`#${filter}`).val("");
-                }
-                loadFilteredData();
+        $('body').on('click', `#active_${filter}`, (event) => {
+            $(`#active_${filter}`).remove();
+            if(filter === "type"){
+                $('input[name=type]:checked').prop('checked', false);
+            } else {
+                $(`#${filter}`).val("");
             }
+            loadFilteredData();
         });
-    })
+    })    
 });

@@ -66,7 +66,6 @@ $startFrom = ($page - 1) * $recordsPerPage;
 $query .= " ORDER BY t.date DESC";
 //define the result per pages
 $paginationQuery = $query . " LIMIT $startFrom, $recordsPerPage";
-var_dump($query);
 $statement = $db->query($query);
 $total_data = $statement->rowCount();
 $statement = $db->query($paginationQuery);

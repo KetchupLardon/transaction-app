@@ -12,13 +12,24 @@ class Transaction
         $this->db = Database::getPDO();
     }
 
-    public function findAll()
+    public function getActualMonthDebit($type)
+    {
+        $req = $this->db->prepare(
+            "SELECT SUM(amount) FROM transaction WHERE EXTRACT(MONTH FROM date) = MONTH(CURRENT_DATE()) AND type = :type"
+            );
+        $req->execute(["type" => $type]);
+        $response = $req->fetchAll();
+        return $response[0]['SUM(amount)'];
+    }
+
+    public function getLastTransactions()
     {
         $req = $this->db->query(
             "SELECT  t.amount, t.type, t.date, t.comment, c.name, m.method 
             FROM transaction t 
             LEFT JOIN categorie c ON t.categorie_id = c.id 
-            LEFT JOIN moyen_paiement m ON t.payment_method_id = m.id"
+            LEFT JOIN moyen_paiement m ON t.payment_method_id = m.id
+            LIMIT 4"
             );
         $response = $req->fetchAll();
         return $response;
