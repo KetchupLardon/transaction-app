@@ -1,0 +1,68 @@
+<?php 
+use App\Model\Transaction;
+use \App\Model\Category;
+use \App\Model\PaymentMethod;
+
+
+$categoryClass = new Category;
+$categoriesArray = $categoryClass->findAll();
+$paymentClass = new PaymentMethod;
+$paymentArray = $paymentClass->findAll();
+
+$instanceTransaction = new Transaction;
+$transactions = $instanceTransaction->findAll();
+
+ob_start();
+?>
+
+<h2>Transactions</h2>
+
+<div class="flex_row">
+    <div>
+        <label for="credit">
+            <input type="radio" name="type" id="credit" value="credit" class="js_filter">Crédit
+        </label>
+        <label for="debit">
+            <input type="radio" name="type" id="debit" value="debit" class="js_filter">Débit
+        </label>
+    </div>
+    <div>
+        <label for="category">Catégorie :</label>
+        <select name="category" id="category" class="js_filter">
+            <option value=""> </option>
+            <?php foreach ($categoriesArray as $value):?>
+                <option value="<?= $value["id"]?>"><?= $value["name"]?></option>
+            <?php endforeach?>
+        </select>
+    </div>
+    <div>
+        <label for="payment_method">Moyen de paiement :</label>
+        <select name="payment_method" id="payment_method" class="js_filter">
+            <option value=""> </option>
+            <?php foreach ($paymentArray as $value):?>
+                <option value="<?= $value["id"]?>"><?= $value["method"]?></option>
+            <?php endforeach?>
+        </select>
+    </div>
+    <div>
+        <label for="date">Date :</label>
+        <select name="date" id="date" class="js_filter">
+            <option value=""> </option>
+            <option value="jours">Denière 24h</option>
+            <option value="mois">Denier mois</option>
+            <option value="année">Denière année</option>
+        </select>
+    </div>
+</div>
+<div class="flex_row_buttons">
+    <div id="js_category_filter"></div>
+    <div id="js_type_filter"></div>
+    <div id="js_date_filter"></div>
+    <div id="js_payment_method_filter"></div>
+</div>
+<div id="transaction_list_container"><div id="transaction_list"></div></div>
+
+<?php
+$content = ob_get_clean();
+require_once("template.php");
+?>

@@ -1,0 +1,148 @@
+body{
+    background-color: #F2F2F2;
+    font-family: 'Nunito', sans-serif;
+    color: #828282;
+    box-sizing: border-box;
+}
+
+h2{
+    text-align: center;
+}
+input[type=text], textarea{
+    outline: none;
+    border: none;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+    height: 21px;
+}
+textarea{
+    outline: none;
+    border: none;
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+    height: auto;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header > p{
+    color: #BDBDBD;
+}
+
+nav > ul{
+    display: flex;
+    justify-content: center;
+}
+nav > ul > li{
+    list-style: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 35px;
+    padding-left: 35px;
+    background-color: #B765C3;
+}
+nav > ul > li > a{
+    text-align: center;
+    text-decoration: none;
+    color: white;
+}
+nav > ul > li:first-child{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-right: 10px;
+}
+nav > ul > li:last-child{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: 10px;
+}
+nav > ul > li:hover{
+    background-color: #736975;
+}
+
+.add_transaction{
+    margin: auto;
+    width:50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    grid-template-areas:
+    "category payment"
+    "amount date"
+    "type ."
+    "comment comment"
+    ". button";
+}
+.add_transaction > div{
+    display: flex;
+    flex-direction: column;
+}
+.add_transaction > #category_container{grid-area: category;}
+.add_transaction > #payment{grid-area: payment;}
+.add_transaction > #amount{grid-area: amount;}
+.add_transaction > #date{grid-area: date;}
+.add_transaction > #transaction_type{grid-area: type;}
+.add_transaction > #comment{grid-area: comment;}
+
+button{
+    justify-self: flex-end;
+    grid-area: button;
+    background-color: #B765C3;
+    color: white;
+    width: 80px
+}
+
+.transaction{
+    display: flex;
+    flex-direction: row;
+}
+.transaction > div{
+    padding-left: 10px;
+}
+#transaction_list_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#transaction_list{
+    background-color: #4F4F4F;
+    color: #BDBDBD;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+#login_form{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.flex_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.flex_column{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.flex_row_buttons{
+    display: flex;
+    flex-direction: row;
+}
+.active_button{
+    background-color: #8E4D98;
+    color: white;
+    padding: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: fit-content;
+}

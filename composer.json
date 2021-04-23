@@ -1,0 +1,11 @@
+{
+    "name": "toto/transaction",
+    "description": "transaction application",
+    "type": "project",
+    "license": "GPL",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    }
+}
