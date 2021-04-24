@@ -3,7 +3,7 @@ namespace App\Model;
 use \PDO;
 
 class Database {
-    
+
     public static function getPDO(): PDO {
 
         $db = new PDO('mysql:host=localhost;dbname=transapp;charset=utf8', 'toto', 'toto', [

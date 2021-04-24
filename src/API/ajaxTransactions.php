@@ -1,14 +1,9 @@
 <?php
 
-namespace App\API;
+require_once realpath("../../vendor/autoload.php");
 use \App\Model\Database;
-use \PDO;
 
-// $db = Database::getPDO();
-$db = new PDO('mysql:host=localhost;dbname=transapp;charset=utf8', 'toto', 'toto', [
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$db = Database::getPDO();
 $output = ""; 
 $WHEREisDefined = false;
 $recordsPerPage = 5;

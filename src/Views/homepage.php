@@ -45,7 +45,7 @@ ob_start();
 
 <div id="month_select">
     <div id="left_arrow"></div>
-    <h3 id=js_mont_name></h3>
+    <h3 id=js_month_name></h3>
     <div id="right_arrow"></div>
 </div>
 
@@ -54,15 +54,9 @@ ob_start();
         <canvas id="myChart" width="100" height="100"></canvas>
     </div>
 </div>
-<div id="type_stat_container">
-    <div id="type_stat_subcontainer">
-        <h3>Type de statistiques</h3>
-        <div id="total_stat">
-            <div id="credit_amount" class="green"><?= $monthCredit?>€</div>
-            <div id="debit_amount" class="red"><?= $monthDebit?>€</div>
-        </div>
-    </div>
-</div>
+
+<div id="homeDisplay"></div>
+
 <div id="transaction_home_container">
     <h3>Dernières transactions</h3>
     <div class="transaction">

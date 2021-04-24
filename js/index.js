@@ -4,7 +4,7 @@ jQuery(document).ready(($) => {
     
     const loadAllData = (page = 1,category = "", payment_method = "", type = "", date ="") => {
         $.ajax({
-            url: "http://localhost/www/transaction/src/API/ajax.php",
+            url: "http://localhost/www/transaction/src/API/ajaxTransactions.php",
             method:"POST",
             data: {page:page, category:category, payment_method:payment_method, type:type, date:date},
             success: (data) => {
