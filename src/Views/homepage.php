@@ -1,43 +1,11 @@
 <?php 
 use App\Model\Transaction;
+use App\Controller\Utils;
 $instanceTransaction = new Transaction;
+$instanceUtils = new Utils;
 $transactions = $instanceTransaction->getLastTransactions();
+$sortedData = $instanceUtils->sortDatas($transactions);
 $title = "Salsifi Budget | Accueil";
-$amount = [];
-$category = [];
-$comment = [];
-$date = [];
-function createDatasHTMLColumn($data)
-{
-    $HTML = "";
-    $HTML .= "
-    <div class='flex_column'>
-    ";
-    foreach ($data as $value){
-        $HTML .= "
-        <div>$value</div>
-        ";
-    }
-    $HTML .= "
-    </div>
-    ";
-    
-    return $HTML;
-}
-foreach ($transactions as $transaction){
-    foreach ($transaction as  $key =>$value){
-        if($key === "name") $category[] = $value;
-        if($key === "amount") $amount[] = $value . " €";
-        if($key === "date") $date[] = $value;
-        if($key === "comment"){
-            if($value){
-                $comment[] = $value;
-            } else {
-                $comment[] = "<i>aucun commentaire</i>";
-            }
-        }
-     }
-}
 ob_start();
 ?>
 
@@ -53,15 +21,15 @@ ob_start();
     </div>
 </div>
 
-<div id="homeDisplay"></div>
+<div id="js_amount_display"></div>
 
 <div id="transaction_home_container">
     <h3>Dernières transactions</h3>
     <div class="transaction">
-        <?=createDatasHTMLColumn($category)?>
-        <?=createDatasHTMLColumn($comment)?>
-        <?=createDatasHTMLColumn($date)?>
-        <?=createDatasHTMLColumn($amount)?>
+        <?= $instanceUtils->createDatasHTMLColumn($sortedData['category']) ?>
+        <?= $instanceUtils->createDatasHTMLColumn($sortedData['comment']) ?>
+        <?= $instanceUtils->createDatasHTMLColumn($sortedData['date']) ?>
+        <?= $instanceUtils->createDatasHTMLColumn($sortedData['amount'], true) ?>
     </div>
 </div>
 

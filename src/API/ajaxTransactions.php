@@ -2,8 +2,10 @@
 
 require_once realpath("../../vendor/autoload.php");
 use \App\Model\Database;
+use App\Controller\Utils;
 
 $db = Database::getPDO();
+$instanceUtils = new Utils;
 $output = ""; 
 $WHEREisDefined = false;
 $recordsPerPage = 5;
@@ -17,6 +19,14 @@ function whereOrAnd($WHEREisDefined)
         return" WHERE ";
     };
 };
+
+function activePageCSS($page, $iteration)
+{
+    if($page == $iteration){
+        return "active_pagination";
+    }
+    return;
+}
 
 $query = "SELECT  t.amount, t.type, t.date, t.comment, c.name, m.method 
 FROM transaction t
@@ -65,61 +75,17 @@ $statement = $db->query($query);
 $total_data = $statement->rowCount();
 $statement = $db->query($paginationQuery);
 $result = $statement->fetchAll();
-$amount = [];
-$category = [];
-$comment = [];
-$date = [];
-
-function checkMinus($data, $number) 
-{
-    if(substr($data, 0, 1) == "-" && $number === true){
-        return "red";
-    } elseif ($number === true) {  
-        return "green";
-    }
-}
-
-function createDatasHTMLColumn($data, $number = false)
-{
-    $HTML = "";
-    $HTML .= "<div class='flex_column'>";
-    foreach ($data as $value){
-        $HTML .= "<div class='" . checkMinus($value, $number) . "'>$value</div>";
-    }
-    $HTML .= "</div>";
-     return $HTML;
-}
-function activePageCSS($page, $iteration)
-{
-    if($page == $iteration){
-        return "active_pagination";
-    }
-    return;
-}
 
 if($total_data > 0){
     //store each column's data in variable
-    foreach ($result as $transaction){
-        foreach ($transaction as $key => $value){
-            if($key === "name") $category[] = $value;
-            if($key === "amount") $amount[] = $value . " €";
-            if($key === "date") $date[] = $value;
-            if($key === "comment"){
-                if($value){
-                    $comment[] = $value;
-                } else {
-                    $comment[] = "<i>aucun commentaire</i>";
-                }
-            }
-        }
-    }
+    $sortedData = $instanceUtils->sortDatas($result);
 
     $output .= "<div class='transaction'>";
     
-    $output .= createDatasHTMLColumn($category);
-    $output .= createDatasHTMLColumn($comment);
-    $output .= createDatasHTMLColumn($date);
-    $output .= createDatasHTMLColumn($amount, true);
+    $output .= $instanceUtils->createDatasHTMLColumn($sortedData['category']);
+    $output .= $instanceUtils->createDatasHTMLColumn($sortedData['comment']);
+    $output .= $instanceUtils->createDatasHTMLColumn($sortedData['date']);
+    $output .= $instanceUtils->createDatasHTMLColumn($sortedData['amount'], true);
 
     $output .= "</div>";
 } else {

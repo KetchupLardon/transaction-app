@@ -111,6 +111,10 @@ nav > div > a:hover, .active_navbar{
 .add_transaction > #transaction_type{grid-area: type;}
 .add_transaction > #comment{grid-area: comment;}
 
+.add_transaction > div > label {
+    display:inline-block;
+}
+
 button{
     justify-self: flex-end;
     grid-area: button;

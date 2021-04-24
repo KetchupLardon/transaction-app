@@ -29,6 +29,7 @@ class Transaction
             FROM transaction t 
             LEFT JOIN categorie c ON t.categorie_id = c.id 
             LEFT JOIN moyen_paiement m ON t.payment_method_id = m.id
+            ORDER BY date DESC
             LIMIT 4"
             );
         $response = $req->fetchAll();

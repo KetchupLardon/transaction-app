@@ -22,7 +22,7 @@ jQuery(document).ready(($) => {
         method:"POST",
         data: {selectedMonth:selectedMonth, selectedYear:selectedYear},
         success: (data) => {
-            $('#homeDisplay').html(data);
+            $('#js_amount_display').html(data);
             creditAmount = parseInt($('#credit_amount').html());
             debitAmount = parseInt($('#debit_amount').html());
             graph = new Chart(ctx, {

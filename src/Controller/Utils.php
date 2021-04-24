@@ -10,7 +10,7 @@ class Utils
     protected $comment = [];
     protected $date = [];
 
-    function checkMinus($value, $number) 
+    protected function checkMinus($value, $number) 
     {
         if(substr($value, 0, 1) == "-" && $number === true){
             return "red";
@@ -19,18 +19,18 @@ class Utils
         }
     }
     
-    function createDatasHTMLColumn($data, $number = false)
+    public function createDatasHTMLColumn($data, $number = false)
     {
         $HTML = "";
         $HTML .= "<div class='flex_column'>";
         foreach ($data as $value){
-            $HTML .= "<div class='" . checkMinus($value, $number) . "'>$value</div>";
+            $HTML .= "<div class='" . $this->checkMinus($value, $number) . "'>$value</div>";
         }
         $HTML .= "</div>";
         return $HTML;
     }
 
-    function sortDatas(){
+    public function sortDatas($result){
         foreach ($result as $transaction){
             foreach ($transaction as $key => $value){
                 if($key === "name") $category[] = $value;
@@ -45,5 +45,11 @@ class Utils
                 }
             }
         }
+        return [
+            'category' => $category,
+            'amount' => $amount,
+            'date' => $date,
+            'comment' => $comment
+        ];
     }
 }
