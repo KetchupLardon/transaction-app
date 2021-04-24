@@ -2,8 +2,6 @@
 use App\Model\Transaction;
 $instanceTransaction = new Transaction;
 $transactions = $instanceTransaction->getLastTransactions();
-$monthDebit = $instanceTransaction->getActualMonthDebit('debit');
-$monthCredit = $instanceTransaction->getActualMonthDebit('credit');
 $title = "Salsifi Budget | Accueil";
 $amount = [];
 $category = [];

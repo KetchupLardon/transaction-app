@@ -6,14 +6,12 @@ use \App\Model\Transaction;
 
 $db = Database::getPDO();
 $instanciateTransaction = new Transaction;
-$selectedMonth;
-if(is_null($_POST['selectedMonth'])){
-    $selectedMonth = "MONTH(CURRENT_DATE())"; 
-} else {
-    $selectedMonth = $_POST['selectedMonth'];
-}
-$monthDebit = $instanciateTransaction->getActualMonthDebit("debit", $selectedMonth);
-$monthCredit = $instanciateTransaction->getActualMonthDebit("credit", $selectedMonth);
+$selectedMonth = $_POST['selectedMonth'];
+$selectedYear = $_POST['selectedYear'];
+$monthDebit = $instanciateTransaction->getActualMonthDebit("debit", $selectedMonth, $selectedYear);
+$monthDebit = is_null($monthDebit) ? 0 : $monthDebit;
+$monthCredit = $instanciateTransaction->getActualMonthDebit("credit", $selectedMonth, $selectedYear);
+$monthCredit = is_null($monthCredit) ? 0 : $monthCredit;
 
 $output = "
 <div id='type_stat_container'>
@@ -28,4 +26,3 @@ $output = "
 "; 
 
 echo $output;
-

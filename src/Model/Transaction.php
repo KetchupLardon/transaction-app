@@ -12,12 +12,12 @@ class Transaction
         $this->db = Database::getPDO();
     }
 
-    public function getActualMonthDebit($type, $selectedMonth = 'MONTH(CURRENT_DATE())')
+    public function getActualMonthDebit($type, $selectedMonth, $selectedYear)
     {
         $req = $this->db->prepare(
-            "SELECT SUM(amount) FROM transaction WHERE EXTRACT(MONTH FROM date) =  :selectedMonth AND type = :type"
+            "SELECT SUM(amount) FROM transaction WHERE EXTRACT(MONTH FROM date) =  :selectedMonth AND EXTRACT(YEAR FROM date) =  :selectedYear AND type = :type"
             );
-        $req->execute([ "type" => $type, "selectedMonth" => $selectedMonth]);
+        $req->execute([ "type" => $type, "selectedMonth" => $selectedMonth, "selectedYear" => $selectedYear]);
         $response = $req->fetchAll();
         return $response[0]['SUM(amount)'];
     }
