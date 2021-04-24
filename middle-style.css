@@ -1,0 +1,35 @@
+
+header > h1{
+    font-size: 24px;
+}
+nav > div > a{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+
+#total_stat > div{
+    font-size: 20px;
+}
+
+.add_transaction{
+    width:80%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "category" 
+    "payment"
+    "amount" 
+    "date"
+    "type"
+    "comment"
+    "button";
+}
+
+
+.transaction{
+    min-width: 80%;
+}
+
+.transaction > .flex_column:nth-child(2){
+    display:none
+}

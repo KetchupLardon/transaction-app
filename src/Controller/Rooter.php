@@ -8,8 +8,9 @@ class Rooter
     public static function runRooter()
     {
         $auth = new User;
+        $userData = $auth->isConnected();
 
-        if($auth->isConnected()){
+        if($userData){
             if(isset($_GET["transaction"])){
                 require_once("src/Views/transactions.php");
             } elseif(isset($_GET["add-transaction"])){

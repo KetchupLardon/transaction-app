@@ -10,9 +10,11 @@ $paymentClass = new PaymentMethod;
 $paymentArray = $paymentClass->findAll();
 if(isset($_POST)){
     $transactionClass = new Transaction;
-    $test = $transactionClass->checkBefoteCreate($_SESSION["auth"]);
-    var_dump($test);
+    $transactionClass->checkBefoteCreate($_SESSION["auth"]);
 }
+
+$title = "Salsifi Budget | Ajout Transaction";
+
 ob_start();
 ?>
 
@@ -22,7 +24,7 @@ ob_start();
     <div id="category_container">
         <label for="category">Catégorie :</label>
         <select name="category" id="category">
-            <option value="">--Catégorie--</option>
+            <option value=""> </option>
             <?php foreach ($categoriesArray as $value):?>
                 <option value="<?= $value["id"]?>"><?= $value["name"]?></option>
             <?php endforeach?>
@@ -31,7 +33,7 @@ ob_start();
     <div id="payment">
         <label for="payment_method">Moyen de paiement :</label>
         <select name="payment_method" id="payment_method">
-            <option value="">--Méthode de paiement--</option>
+            <option value=""> </option>
             <?php foreach ($paymentArray as $value):?>
                 <option value="<?= $value["id"]?>"><?= $value["method"]?></option>
             <?php endforeach?>

@@ -10,5 +10,9 @@ class User
     public $name;
 
     public $password;
+    
+    public $first_name;
+
+    public $last_name;
 
 }

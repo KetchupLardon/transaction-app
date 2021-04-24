@@ -75,22 +75,31 @@ $category = [];
 $comment = [];
 $date = [];
 
-function createDatasHTMLColumn($data)
+function checkMinus($data, $number) 
+{
+    if(substr($data, 0, 1) == "-" && $number === true){
+        return "red";
+    } elseif ($number === true) {  
+        return "green";
+    }
+}
+
+function createDatasHTMLColumn($data, $number = false)
 {
     $HTML = "";
-    $HTML .= "
-    <div class='flex_column'>
-    ";
+    $HTML .= "<div class='flex_column'>";
     foreach ($data as $value){
-        $HTML .= "
-        <div>$value</div>
-        ";
+        $HTML .= "<div class='" . checkMinus($value, $number) . "'>$value</div>";
     }
-    $HTML .= "
-    </div>
-    ";
-    
-    return $HTML;
+    $HTML .= "</div>";
+     return $HTML;
+}
+function activePageCSS($page, $iteration)
+{
+    if($page == $iteration){
+        return "active_pagination";
+    }
+    return;
 }
 
 if($total_data > 0){
@@ -110,39 +119,26 @@ if($total_data > 0){
         }
     }
 
-    $output .= "
-    <div class='transaction'>
-    ";
+    $output .= "<div class='transaction'>";
     
     $output .= createDatasHTMLColumn($category);
     $output .= createDatasHTMLColumn($comment);
     $output .= createDatasHTMLColumn($date);
-    $output .= createDatasHTMLColumn($amount);
+    $output .= createDatasHTMLColumn($amount, true);
 
-    $output .= "
-    </div>
-    ";
+    $output .= "</div>";
 } else {
-    $output .= "
-    <p>Aucune trasactions trouvées</p>
-    ";
+    $output .= "<p>Aucune trasactions trouvées</p>";
 }
 
 $total_pages = ceil($total_data/$recordsPerPage);
 
 
-$output .= "
-<div class='flex_row'>
-";
-
+$output .= "<div class='pagination_link_container'>";
 for($i = 1; $i <= $total_pages; $i++){
-    $output .= "
-    <span class='pagination_link' data-page_number='$i'>$i</span>
-    ";
+    $output .= "<span class='pagination_link " . activePageCSS($page, $i) . "'>$i</span>";
 }
 
-$output .= "
-</div>
-";
+$output .= "</div>";
 
 echo $output;

@@ -37,6 +37,7 @@ class Transaction
 
     public function createNew($userId, $categorieId, $amount, $type, $date, $comment, $paymentMethod)
     {
+        $amount = $type === "debit" ? -$amount : $amount;
         $req = $this->db->prepare("INSERT INTO transaction (user_id, categorie_id, amount, type, date, comment, payment_method_id) VALUES (:user_id, :categorie_id, :amount, :type, :date, :comment, :payment_method_id);");
         $req->execute(["user_id" => $userId, "categorie_id" => $categorieId, "amount" => $amount, "type" => $type, "date" => $date, "comment" => $comment, "payment_method_id" => $paymentMethod]);
         return $req;

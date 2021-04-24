@@ -8,19 +8,22 @@ $categoriesArray = $categoryClass->findAll();
 $paymentClass = new PaymentMethod;
 $paymentArray = $paymentClass->findAll();
 
+$title = "Salsifi Budget | Transactions";
+
 ob_start();
 ?>
 
-<h2>Transactions</h2>
-
-<div class="flex_row">
+<div id="filter_select" class="margin_top">
     <div>
-        <label for="credit">
-            <input type="radio" name="type" id="credit" value="credit" class="js_filter">Crédit
-        </label>
-        <label for="debit">
-            <input type="radio" name="type" id="debit" value="debit" class="js_filter">Débit
-        </label>
+        <label for="">Type :</label>
+        <div>
+            <label for="credit">
+                <input type="radio" name="type" id="credit" value="credit" class="js_filter">Crédit
+            </label>
+            <label for="debit">
+                <input type="radio" name="type" id="debit" value="debit" class="js_filter">Débit
+            </label>
+        </div>
     </div>
     <div>
         <label for="category">Catégorie :</label>
@@ -51,7 +54,7 @@ ob_start();
     </div>
 </div>
 <div id="js_filters" class="flex_row_buttons"></div>
-<div id="transaction_list_container"><div id="transaction_list"></div></div>
+<div id="transaction_list_container"></div>
 
 <?php
 $content = ob_get_clean();

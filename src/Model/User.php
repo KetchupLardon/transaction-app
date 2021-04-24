@@ -25,7 +25,7 @@ class User
             return null;
         }
 
-        $req = $this->db->prepare("SELECT * FROM user WHERE id = ?");
+        $req = $this->db->prepare("SELECT first_name, last_name FROM user WHERE id = ?");
         $req->execute([$id]);
         $response = $req->fetchObject(UserController::class);
         return $response;

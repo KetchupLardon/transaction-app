@@ -11,17 +11,32 @@ body{
 .green{
     color: #6FCF97;
 }
+.padding_left{
+    padding-left: 10px;
+}
+.margin_top{
+    margin-top: 3rem;
+}
 #left_arrow{
-    width: 50px;
+    height: 20px;
+    width: 25px;
     clip-path: polygon(100% 0, 0 50%, 100% 100%);
-    background-color: white;
-    color: black;
+    background-color: #4F4F4F;
+}
+#right_arrow{
+    height: 20px;
+    width: 25px;
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+    background-color: #4F4F4F;
 }
 
 h2{
     text-align: center;
 }
-input[type=text], textarea{
+h3{
+    margin: 0;
+}
+input[type=text], input[type=password]{
     outline: none;
     border: none;
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
@@ -43,40 +58,37 @@ header > p{
     color: #BDBDBD;
 }
 
-nav > ul{
+nav > div{
     display: flex;
     justify-content: center;
 }
-nav > ul > li{
-    list-style: none;
+nav > div > a{
     padding-top: 8px;
     padding-bottom: 8px;
     padding-right: 35px;
     padding-left: 35px;
     background-color: #B765C3;
-}
-nav > ul > li > a{
     text-align: center;
     text-decoration: none;
     color: white;
 }
-nav > ul > li:first-child{
+nav > div > a:first-child{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     margin-right: 10px;
 }
-nav > ul > li:last-child{
+nav > div > a:last-child{
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     margin-left: 10px;
 }
-nav > ul > li:hover{
+nav > div > a:hover, .active_navbar{
     background-color: #736975;
 }
 
 .add_transaction{
     margin: auto;
-    width:50%;
+    width:60%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -107,25 +119,53 @@ button{
     width: 80px
 }
 
-.transaction{
+#filter_select {
     display: flex;
-    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
-.transaction > div{
-    padding-left: 10px;
+#filter_select > div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
 }
+
 #transaction_list_container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
-#transaction_list{
-    background-color: #4F4F4F;
-    color: #BDBDBD;
-    margin-top: 2rem;
+.transaction{
+    margin-top: 1rem;
     padding: 1rem;
     border-radius: 1rem;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    background-color: #4F4F4F;
+    color: #BDBDBD;
+    min-width: 80%;
+}
+.transaction > .flex_column > div{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.pagination_link_container{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.pagination_link{
+    padding-right: 5px;
+    padding-left: 5px;
+    cursor: pointer;
+}
+.active_pagination{
+    transform: scale(1.5);
+    color: #B765C3;
 }
 
 #login_form{
@@ -135,15 +175,68 @@ button{
     flex-direction: column;
 }
 /*Home*/
-#graph{
-    border: 1px solid black;
+#month_select{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #B765C3;
 }
-
+#graph_container{
+    display: flex;
+    justify-content: center;
+}
+#graph_subcontainer{
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2rem;
+    width: 200px;
+    padding-bottom: 10px;
+}
 canvas{
     padding: 0;
     margin: auto;
     display: block;
-    width: 200px;
+    width: 150px;
+}
+#type_stat_container{
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+#type_stat_subcontainer{
+    width: 16rem;
+    box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1rem;
+}
+#type_stat_subcontainer > h3{
+    text-align: center;
+}
+#total_stat{
+    display: flex;
+    justify-content: center;
+}
+#total_stat > div{
+    padding: 10px;
+    font-size: 24px;
+}
+#debit_amount{
+    box-shadow: -4px 0px 0px rgba(0, 0, 0, 0.25);
+}
+#transaction_home_container{
+    border-radius: 1rem;
+    background-color: #4F4F4F;
+}
+#transaction_home_container > h3{
+    margin-top: 1rem;
+    padding-top: 1rem;
+    text-align: center;
+    color: #B765C3;
 }
 
 .flex_row{
@@ -158,7 +251,13 @@ canvas{
 }
 .flex_row_buttons{
     display: flex;
-    flex-direction: row;
+    padding-top: 1rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.flex_row_buttons > div{
+    flex-wrap: nowrap;
+    margin-bottom: 0.5rem;
 }
 .active_button{
     background-color: #8E4D98;
