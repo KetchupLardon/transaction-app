@@ -8,15 +8,13 @@ jQuery(document).ready(($) => {
   const d = new Date();
   const actualMonth = d.getMonth() + 1;
   const monthName = $('#js_month_name');
-  const leftArrow = $('#left_arrow');
-  const rightArrow = $('#right_arrow');
   monthName.text(monthNames[actualMonth - 1]);
   let selectedMonth = actualMonth;
   let creditAmount;
   let debitAmount;
   let graph
 
-  const loadGraph = ($selectedMonth = null) => {
+  const loadGraph = (selectedMonth) => {
     $.ajax({
         url: "http://localhost/www/transaction/src/API/ajaxGraph.php",
         method:"POST",
@@ -43,22 +41,25 @@ jQuery(document).ready(($) => {
     });
   }
 
-  loadGraph();
+  loadGraph(actualMonth);
+  $('#right_arrow').css("visibility", "hidden");
 
-  leftArrow.click(() => {
+  $('#left_arrow').click(() => {
     selectedMonth -= 1;
+    if(selectedMonth === 0) selectedMonth = 12; 
     $('#js_month_name').text(monthNames[selectedMonth - 1]);
     //need to destroy the graph before generate a new one
     graph.destroy();
+    if($('#right_arrow').css("visibility") === "hidden" && selectedMonth !== actualMonth) $('#right_arrow').css("visibility", "visible");
     loadGraph(selectedMonth);
   })
   
-  rightArrow.click(() => {
-    if(selectedMonth !== actualMonth){
-      selectedMonth += 1;
-      graph.destroy();
+  $('#right_arrow').click(() => {
+    selectedMonth += 1;
+    graph.destroy();
+    if(selectedMonth === 12) selectedMonth = 1;
+    if(selectedMonth === actualMonth) $('#right_arrow').css("visibility", "hidden");
     loadGraph(selectedMonth);
-    }
     $('#js_month_name').text(monthNames[selectedMonth - 1]);
   })
 
