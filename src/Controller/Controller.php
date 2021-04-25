@@ -32,4 +32,13 @@ class Controller
         $response = $this->transaction->deleteTransaction($transactionId);
         return $response;
     }
+
+    public function checkBeforeCreate($userId)
+    {
+        if($_POST["category"] && $_POST["payment_method"] && $_POST["amount"] && $_POST["date"] && $_POST["type"]){
+            $_SESSION["create"] = 'success';
+            $req = $this->transaction->createNew($userId, $_POST["category"], $_POST["amount"], $_POST["type"], $_POST["date"], $_POST["comment"], $_POST["payment_method"]);
+            return $req;
+        }
+    }
 }

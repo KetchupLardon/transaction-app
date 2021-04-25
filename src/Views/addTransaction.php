@@ -1,7 +1,7 @@
 <?php 
 use \App\Model\Category;
 use \App\Model\PaymentMethod;
-use \App\Controller\Transaction;
+use \App\Controller\Controller;
 
 
 $categoryClass = new Category;
@@ -9,8 +9,8 @@ $categoriesArray = $categoryClass->findAll();
 $paymentClass = new PaymentMethod;
 $paymentArray = $paymentClass->findAll();
 if(isset($_POST)){
-    $transactionClass = new Transaction;
-    $transactionClass->checkBefoteCreate($_SESSION["auth"]);
+    $transactionClass = new Controller;
+    $transactionClass->checkBeforeCreate($_SESSION["auth"]);
 }
 
 $title = "Salsifi Budget | Ajout Transaction";
