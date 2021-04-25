@@ -13,7 +13,8 @@ $categoriesArray = $categoryClass->findAll();
 $paymentArray = $paymentClass->findAll();
 if(!empty($_POST)){
     $controllerClass->sendTransactionForUpdate(intval($_GET['edit']));
-    header("Location: index.php?home");
+    $_SESSION["edit"] = 'success';
+    header("Location: index.php?transaction");
     exit();
 }
 
@@ -24,9 +25,9 @@ ob_start();
 
 <h2>Éditer une transaction</h2>
 
-<form class="add_transaction" action="" method="POST">
+<form class="add_transaction" class="form" id="edit_form" action="" method="POST">
     <div id="category_container">
-        <label for="category">Catégorie : <span class="red">*</span></label>
+        <label for="category" class="category_label">Catégorie : <span class="red">*</span></label>
         <select name="category" id="category">
             <option value="<?= $selectedTransaction['categorie_id'] ?>"><?= $selectedTransaction['name'] ?></option>
             <?php foreach ($categoriesArray as $value):?>
@@ -37,7 +38,7 @@ ob_start();
         </select>
     </div>
     <div id="payment">
-        <label for="payment_method">Moyen de paiement : <span class="red">*</span></label>
+        <label for="payment_method" class="payment_method_label">Moyen de paiement : <span class="red">*</span></label>
         <select name="payment_method" id="payment_method">
             <option  value="<?= $selectedTransaction['payment_method_id'] ?>"><?= $selectedTransaction['method'] ?></option>
             <?php foreach ($paymentArray as $value):?>
@@ -47,19 +48,19 @@ ob_start();
             <?php endforeach?>
         </select>
     </div>
-    <div id="amount">
-        <label for="amount">Montant : <span class="red">*</span></label>
+    <div id="amount_container">
+        <label for="amount" class="amount_label">Montant : <span class="red">*</span></label>
         <div>
             <input type="number" name="amount" id="amount" value="<?= $selectedTransaction['amount'] ?>">
             <span>€</span>
         </div>
     </div>
-    <div id='date'>
-        <label for="date">Date : <span class="red">*</span></label>
+    <div id='date_container'>
+        <label for="date" class="date_label">Date : <span class="red">*</span></label>
         <input type="date" name="date" id="date" value="<?= $selectedTransaction['date'] ?>">
     </div>
     <div id="transaction_type">
-        <h3>Type de transaction : <span class="red">*</span></h3>
+        <h3 class="type_label">Type de transaction : <span class="red">*</span></h3>
         <div>
             <input type="radio" name="type" id="credit" value="credit" <?= $selectedTransaction['type'] === 'debit' ? 'checked' : '' ?>>
             <label for="credit">Crédit</label>

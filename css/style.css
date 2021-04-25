@@ -114,8 +114,8 @@ nav > div > a:hover, .active_navbar{
 }
 .add_transaction > #category_container{grid-area: category;}
 .add_transaction > #payment{grid-area: payment;}
-.add_transaction > #amount{grid-area: amount;}
-.add_transaction > #date{grid-area: date;}
+.add_transaction > #amount_container{grid-area: amount;}
+.add_transaction > #date_container{grid-area: date;}
 .add_transaction > #transaction_type{grid-area: type;}
 .add_transaction > #comment{grid-area: comment;}
 

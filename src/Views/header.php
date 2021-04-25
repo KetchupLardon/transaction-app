@@ -9,9 +9,6 @@ if($userData){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" media="screen and (max-width: 600px)" href="css/middle-style.css">
@@ -21,13 +18,23 @@ if($userData){
     <title><?= $title?></title>
 </head>
 <body>
-    <?php if(isset($_SESSION['delete'])): ?>
-        <?php if($_SESSION['delete'] === "success"): ?>
-            <div class="success_banner">Transaction supprimé avec succès</div>
-        <?php 
-        unset($_SESSION['delete']);
+    <?php 
+    if(isset($_SESSION['delete']) || isset($_SESSION['create']) || isset($_SESSION['edit'])): 
+       $sessionName;
+       $messageSuccess; 
+        if($_SESSION['delete'] === "success"): 
+            $sessionName = 'delete';
+            $messageSuccess = 'supprimé'; 
+        elseif($_SESSION['create'] === "success"): 
+            $sessionName = 'create';
+            $messageSuccess = 'créé'; 
+        elseif($_SESSION['edit'] === "success"): 
+            $sessionName = 'edit';
+            $messageSuccess = 'édité'; 
         endif 
         ?>
+        <div class="success_banner">Transaction <?= $messageSuccess ?> avec succès</div>
+        <?php unset($_SESSION[$sessionName]) ?>
     <?php endif ?>
     <?php if(isset($_SESSION["auth"])): ?>
         <header>
