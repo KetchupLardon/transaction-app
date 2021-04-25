@@ -26,4 +26,10 @@ class Controller
             return $response;
         }
     }
+    
+    public function getTransactionForDelete($transactionId)
+    { 
+        $response = $this->transaction->deleteTransaction($transactionId);
+        return $response;
+    }
 }

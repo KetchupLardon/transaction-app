@@ -19,6 +19,8 @@ class Rooter
                 require_once("src/Views/connexion.php");
             } elseif(isset($_GET["edit"])){
                 require_once("src/Views/editTransaction.php");
+            }  elseif(isset($_GET["delete"])){
+                require_once("src/Views/deleteTransaction.php");
             } else {
                 require_once("src/Views/homepage.php");
             }

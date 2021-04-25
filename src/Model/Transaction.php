@@ -70,4 +70,15 @@ class Transaction
         $transaction = $req->fetch();
         return $transaction;
     }
+
+    function deleteTransaction($transactionId)
+    {
+        $req = $this->db->prepare(
+            "DELETE FROM transaction
+            WHERE id = :transactionId"
+            );
+        $req->execute(["transactionId" => $transactionId]);
+        $transaction = $req->fetch();
+        return $transaction;
+    }
 }

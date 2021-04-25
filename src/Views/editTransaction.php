@@ -23,7 +23,7 @@ ob_start();
 ?>
 
 <h2>Éditer une transaction</h2>
-
+<a href="index.php?delete=<?=$_GET['edit']?>" id="delete_button">Supprimer</a>
 <form class="add_transaction" action="" method="POST">
     <div id="category_container">
         <label for="category">Catégorie : <span class="red">*</span></label>
