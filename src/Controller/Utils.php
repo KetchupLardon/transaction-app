@@ -36,7 +36,11 @@ class Utils
         $HTML = "";
         $HTML .= "<div class='flex_column'>";
         foreach ($data as $value){
+            
+            $HTML .= "<div class='flex_column'>";
             $HTML .= "<a href='index.php?edit=$value' class='edit_button'>editer</a>";
+            $HTML .= "<a href='index.php?delete=$value' class='edit_button'>supprimer</a>";
+            $HTML .= "</div>";
         }
         $HTML .= "</div>";
         return $HTML;

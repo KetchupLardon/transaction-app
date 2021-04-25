@@ -49,6 +49,14 @@ textarea{
     height: auto;
 }
 
+.success_banner{
+    width: 100%;
+    background-color: #6FCF97;
+    color: white;
+    text-align: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
 header{
     display: flex;
     align-items: center;
