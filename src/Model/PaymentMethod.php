@@ -1,16 +1,9 @@
 <?php
 
 namespace App\Model;
-use \App\Model\Database;
 
-class PaymentMethod
+class PaymentMethod extends Model
 {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = Database::getPDO();
-    }
 
     public function findAll()
     {

@@ -1,12 +1,10 @@
 <?php 
-use \App\Model\Category;
-use \App\Model\PaymentMethod;
 
+use \App\Controller\Controller;
 
-$categoryClass = new Category;
-$categoriesArray = $categoryClass->findAll();
-$paymentClass = new PaymentMethod;
-$paymentArray = $paymentClass->findAll();
+$controllerClass = new Controller;
+$categoriesArray = $controllerClass->getAllCategories();
+$paymentArray = $controllerClass->getAllPaymentMethod();
 
 $title = "Salsifi Budget | Transactions";
 

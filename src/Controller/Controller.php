@@ -2,15 +2,21 @@
 
 namespace App\Controller;
 use \App\Model\Transaction;
+use \App\Model\Category;
+use \App\Model\PaymentMethod;
 
 class Controller
 {
     
     protected $transaction;
+    protected $category;
+    protected $paymentMethod;
 
     public function __construct()
     {
         $this->transaction = new Transaction;
+        $this->category = new Category;
+        $this->paymentMethod = new PaymentMethod;
     }
 
     public function getTransactionForEdit($transactionId)
@@ -40,5 +46,23 @@ class Controller
             $req = $this->transaction->createNew($userId, $_POST["category"], $_POST["amount"], $_POST["type"], $_POST["date"], $_POST["comment"], $_POST["payment_method"]);
             return $req;
         }
+    }
+    
+    public function getFourLastTransactions()
+    { 
+        $response = $this->transaction->getLastTransactions();
+        return $response;
+    }
+    
+    public function getAllCategories()
+    { 
+        $response = $this->category->findAll();
+        return $response;
+    }
+    
+    public function getAllPaymentMethod()
+    { 
+        $response = $this->paymentMethod->findAll();
+        return $response;
     }
 }

@@ -1,9 +1,9 @@
 <?php 
-use App\Model\Transaction;
+use App\Controller\Controller;
 use App\Controller\Utils;
-$instanceTransaction = new Transaction;
+$controllerClass = new Controller;
 $instanceUtils = new Utils;
-$transactions = $instanceTransaction->getLastTransactions();
+$transactions = $controllerClass->getFourLastTransactions();
 $sortedData = $instanceUtils->sortDatas($transactions);
 $title = "Salsifi Budget | Accueil";
 ob_start();

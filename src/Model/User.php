@@ -1,18 +1,11 @@
 <?php
 
 namespace App\Model;
-use \App\Model\Database;
 use \App\Controller\User as UserController;
 use \PDO;
 
-class User
+class User extends Model
 {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = Database::getPDO();
-    }
 
     public function isConnected()
     {

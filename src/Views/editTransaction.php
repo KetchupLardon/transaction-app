@@ -1,16 +1,11 @@
 <?php 
-use \App\Model\Category;
-use \App\Model\PaymentMethod;
-use \App\Controller\Transaction;
+
 use \App\Controller\Controller;
 
-
-$categoryClass = new Category;
 $controllerClass = new Controller;
-$paymentClass = new PaymentMethod;
 $selectedTransaction = $controllerClass->getTransactionForEdit(intval($_GET['edit']));
-$categoriesArray = $categoryClass->findAll();
-$paymentArray = $paymentClass->findAll();
+$categoriesArray = $controllerClass->getAllCategories();
+$paymentArray = $controllerClass->getAllPaymentMethod();
 if(!empty($_POST)){
     $controllerClass->sendTransactionForUpdate(intval($_GET['edit']));
     $_SESSION["edit"] = 'success';

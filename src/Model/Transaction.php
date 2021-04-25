@@ -1,16 +1,9 @@
 <?php
 
 namespace App\Model;
-use \App\Model\Database;
 
-class Transaction
+class Transaction  extends Model
 {
-    protected $db;
-
-    public function __construct()
-    {
-        $this->db = Database::getPDO();
-    }
 
     public function getActualMonthAmount($type, $selectedMonth, $selectedYear)
     {
