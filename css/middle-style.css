@@ -25,6 +25,10 @@ nav > div > a{
     "button";
 }
 
+.edit_button{
+    font-size: 10px;
+}
+
 
 .transaction{
     min-width: 80%;

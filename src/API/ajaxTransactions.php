@@ -28,7 +28,7 @@ function activePageCSS($page, $iteration)
     return;
 }
 
-$query = "SELECT  t.amount, t.type, t.date, t.comment, c.name, m.method 
+$query = "SELECT t.id, t.amount, t.type, t.date, t.comment, c.name, m.method 
 FROM transaction t
 LEFT JOIN categorie c ON t.categorie_id = c.id 
 LEFT JOIN moyen_paiement m ON t.payment_method_id = m.id";
@@ -86,6 +86,7 @@ if($total_data > 0){
     $output .= $instanceUtils->createDatasHTMLColumn($sortedData['comment']);
     $output .= $instanceUtils->createDatasHTMLColumn($sortedData['date']);
     $output .= $instanceUtils->createDatasHTMLColumn($sortedData['amount'], true);
+    $output .= $instanceUtils->createEditColumn($sortedData['id']);
 
     $output .= "</div>";
 } else {

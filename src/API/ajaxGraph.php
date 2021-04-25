@@ -8,9 +8,9 @@ $db = Database::getPDO();
 $instanciateTransaction = new Transaction;
 $selectedMonth = $_POST['selectedMonth'];
 $selectedYear = $_POST['selectedYear'];
-$monthDebit = $instanciateTransaction->getActualMonthDebit("debit", $selectedMonth, $selectedYear);
+$monthDebit = $instanciateTransaction->getActualMonthAmount("debit", $selectedMonth, $selectedYear);
 $monthDebit = is_null($monthDebit) ? 0 : $monthDebit;
-$monthCredit = $instanciateTransaction->getActualMonthDebit("credit", $selectedMonth, $selectedYear);
+$monthCredit = $instanciateTransaction->getActualMonthAmount("credit", $selectedMonth, $selectedYear);
 $monthCredit = is_null($monthCredit) ? 0 : $monthCredit;
 
 $output = "
