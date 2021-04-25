@@ -3,6 +3,10 @@
     font-size: 12px;
 }
 
+.flex_row_buttons > div{
+    font-size: 10px;
+}
+
 .edit_button{
     font-size: 8px;
 }
