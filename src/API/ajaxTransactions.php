@@ -1,5 +1,6 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
 require_once realpath("../../vendor/autoload.php");
 use \App\Model\Database;
 use App\Controller\Utils;

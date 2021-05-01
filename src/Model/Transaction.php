@@ -60,8 +60,7 @@ class Transaction  extends Model
             WHERE id = :transactionId"
             );
         $req->execute(["transactionId" => $transactionId, "categorie_id" => $categorieId, "amount" => $amount, "type" => $type, "date" => $date, "comment" => $comment, "payment_method_id" => $paymentMethod]);
-        $transaction = $req->fetch();
-        return $transaction;
+        return $req;
     }
 
     function deleteTransaction($transactionId)
@@ -71,7 +70,6 @@ class Transaction  extends Model
             WHERE id = :transactionId"
             );
         $req->execute(["transactionId" => $transactionId]);
-        $transaction = $req->fetch();
-        return $transaction;
+        return $req;
     }
 }
